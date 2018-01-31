@@ -269,6 +269,8 @@ interviewQuestion('developer')('con');
 */
 
 
+/*
+
 ///////////////Lecture: IIFE (Imediately invoked Fuction Expresions) /////
 
 
@@ -296,5 +298,124 @@ game();
     console.log(score >= 5 - goodLuck);
 })(5);
 
+*/
 
 
+/////////////////////// CLOSURES ///////////////////////////
+
+
+function retirement(retirementAge) {
+
+    var a = " years untill retirement";
+
+    return function(yearOfBirth) {
+
+        var age = 2018 - yearOfBirth;
+        console.log((retirementAge - age)+ a);
+
+    }
+}
+
+var retirementUS = retirement(66);
+
+
+
+
+var retirementGermany =  retirement(65);
+
+var retirementIceland =  retirement(67);
+
+retirementUS(1988);
+retirementGermany(1988);
+retirementIceland(1988);
+
+
+//////////////////// closures //////////////////////////
+
+function careerBegin(careerStartAge) {
+
+    var a = ' years till starts work '
+
+
+    return function(yearOfBirth) {
+        var age = 2018 - yearOfBirth;
+
+        console.log((careerStartAge - age) + a);
+    }
+}
+
+var careerBeginEU = careerBegin(16);
+
+careerBeginEU(2010);
+
+careerBegin(18)(2000);
+
+
+
+/*
+
+function interviewQuestion(job){
+
+    if (job === 'designer'){
+        return function(name){
+            console.log( name + " , can you tell me what ux design is"+ "?");
+        }
+    } else if ( job === 'developer'){
+
+        return function(name) {
+            console.log(name + " , can you tell me what an opperator is" + " ?");
+        }
+    } else {
+        return function(name){
+            console.log( name + " , can you tell me what you do ?");
+        }
+    }
+ }
+
+ */
+
+ function interviewQuestion(job) {
+
+    return function(name) {
+
+        if (job === 'designer') {
+            console.log( name + " , can you tell me what ux design is"+ "?");
+        } else if ( job === 'developer') {
+            console.log(name + " , can you tell me what an opperator is" + " ?");
+
+        } else {
+            console.log( name + " , can you tell me what you do ?");
+
+        }
+    }
+ }
+
+
+
+ interviewQuestion('developer')('con');
+
+
+ function whatForDinner(country) {
+
+    return function(meal) {
+
+        if( country === 'italian'){
+
+            console.log(  " tonight we will eat " + meal);
+        }else if (country === 'france') {
+
+            console.log(  " tonight we will eat " + meal);
+        }else if (country === 'ireland'){
+
+            console.log(  'tonight we will have ' + meal);
+        }else {
+
+            console.log(' what would you like for dinner?');
+        }
+    }
+
+ }
+
+ whatForDinner('italian')('pizza');
+
+ whatForDinner();
