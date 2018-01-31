@@ -179,6 +179,7 @@ console.log(obj.city); // san fran
 
 */
 
+/*
 
 //////// Lecture: Passing functions as arguments/ callback functions   ///
 
@@ -228,3 +229,72 @@ var rates = arrayCalc(ages, maxHeartRate);
 console.log(ages);
 console.log(fullAge);
 console.log(rates);
+
+*/
+
+/*
+
+///////////////Lecture: Functions returning First Class Functions /////
+
+
+function interviewQuestion(job){
+
+    if (job === 'designer'){
+        return function(name){
+            console.log( name + " , can you tell me what ux design is"+ "?");
+        }
+    } else if ( job === 'developer'){
+
+        return function(name) {
+            console.log(name + " , can you tell me what an opperator is" + " ?");
+        }
+    } else {
+        return function(name){
+            console.log( name + " , can you tell me what you do ?");
+        }
+    }
+ }
+
+var developerQuestion = interviewQuestion('developer');
+
+var designerQuestion = interviewQuestion('designer');
+
+var nameQuestion = interviewQuestion(name);
+
+developerQuestion('con');
+designerQuestion('lyn');
+
+nameQuestion('roy');
+interviewQuestion('developer')('con');
+*/
+
+
+///////////////Lecture: IIFE (Imediately invoked Fuction Expresions) /////
+
+
+// very handy tool for data privacy and data modularity
+
+function game() {
+
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+}
+game();
+
+
+(function game() {
+
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+})();
+
+
+
+(function game(goodLuck) {
+
+    var score = Math.random() * 10;
+    console.log(score >= 5 - goodLuck);
+})(5);
+
+
+
