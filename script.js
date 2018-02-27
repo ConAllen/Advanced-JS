@@ -1,6 +1,6 @@
 // Function constructor practice
 
-/*
+
 var con = {
 
     name: 'Con',
@@ -58,6 +58,9 @@ console.log(ron.lastName);
 console.log(jane.lastName);
 
 
+
+
+
 //////////// 3  creating an object /////////////////////
 
 var Friend = function (name,yearOfBirth, job){
@@ -112,7 +115,7 @@ var jane = Object.create(personProto,
     job: {value: 'designer'}
   });
 
-  */
+
 
 
 
@@ -300,7 +303,7 @@ game();
 
 */
 
-
+/*
 /////////////////////// CLOSURES ///////////////////////////
 
 
@@ -372,7 +375,7 @@ function interviewQuestion(job){
     }
  }
 
- */
+
 
  function interviewQuestion(job) {
 
@@ -401,21 +404,355 @@ function interviewQuestion(job){
 
         if( country === 'italian'){
 
-            console.log(  " tonight we will eat " + meal);
+            console.log(  "tonight we will eat " + country  + " " + meal);
         }else if (country === 'france') {
 
-            console.log(  " tonight we will eat " + meal);
+            console.log(  "tonight we will eat "+ country  + " " + meal);
         }else if (country === 'ireland'){
 
-            console.log(  'tonight we will have ' + meal);
+            console.log(  'tonight we will have '+ country  + " " + meal);
         }else {
 
-            console.log(' what would you like for dinner?');
+            console.log('what would you like for dinner?');
         }
     }
 
  }
 
  whatForDinner('italian')('pizza');
+ whatForDinner('france')('snails');
+ whatForDinner('ireland')('spuds');
 
- whatForDinner();
+
+
+
+ */
+
+ /*
+
+
+////////////       Lecture: Bind, Call, Apply /////////////
+
+
+    var con = {
+
+        name: 'con',
+        age: 29,
+        job: 'developer',
+
+        presentation: function(style,timeOfDay) {
+                if (style=== 'formal'){
+                    console.log( 'Good ' + timeOfDay + ', Ladies and Gents! I\'m ' + this.name + ' and I\'m a ' + this.job + ',' + ' I\'m ' + this.age + " years old" + ' have a great ' + timeOfDay + '.' );
+                } else if (style ==='friendly'){
+                    console.log(' Hey whats going on?  I\'m ' + this.name + ' I\'m a ' + this.job + ' have a great ' + timeOfDay + '.' );
+                }
+        }
+
+
+    }
+
+
+    var jane = {
+
+        name: 'jane',
+        age: 22,
+        job: 'designer'
+    };
+
+    con.presentation.call(jane, 'friendly', 'afternoon'); //method borrowing. set the 'this variable' to emilly
+
+    con.presentation('formal', 'morning');
+
+   // con.presentation.apply(jane, ['friendly', 'afternoon'];)
+
+
+   var conFriendly = con.presentation.bind(con, 'friendly');
+
+   conFriendly('morning');
+   conFriendly('night');
+
+
+   var janeFormal = con.presentation.bind(jane, 'formal');
+
+   janeFormal('afternoon');
+
+
+
+
+
+   ///////////////////// Quizz /////////////////////
+
+
+   function Question (question,answers,correct) {
+    this.question = question;
+    this.answers = answers;
+    this.correct = correct;
+
+    }
+
+var q1 = new Question('Is javaScript the coolest?', ['yes','no'], 0 );
+
+var q2 = new Question('Who is taking this challenge?', ['jane','jim','con'],2);
+
+var q3 = new Question('what best describes coding?', ['difficult','fun', 'fun & difficult'], 3);
+
+
+var arrQuestions = [q1, q2, q3];
+
+
+
+
+
+
+function print_me(el, el2){
+
+    return el;
+    return el2;
+}
+
+print_me('foo','bar');
+
+*/
+
+
+
+
+
+
+var johnAge = 123;
+var johnHeight = 126;
+
+var conAge = 123;
+var conHeight = 126;
+
+var janeAge = 124;
+var janeHeight = 126;
+
+
+scoreJohn = johnHeight * johnAge;
+scoreCon = conHeight * conAge;
+
+scoreJane = janeHeight * janeAge;
+
+if (scoreJohn > scoreCon){
+
+    console.log( 'john is the winner with ' + scoreJohn);
+}else if (scoreCon > scoreJohn) {
+
+    console.log( 'con is the winner with ' + scoreCon )
+} else if (scoreJane > scoreJohn && scoreJane > scoreCon) {
+    console.log('jane is the winner with ' + scoreJane + ' points')
+}else {
+    console.log('its a draw');
+}
+
+
+
+
+
+
+// very cool
+
+
+var years = [ 1999, 2001, 1988, 2017];
+
+
+function arrayCalc(arr, fn) {
+
+   var arrRes =  [];
+   for(var i = 0; i < arr.length; i++) {
+         arrRes.push(fn(arr[i]));
+    }
+     return arrRes;
+}
+
+function calculateAge(el) {
+
+    return 2018 - el;
+}
+
+function isFullAge(el){
+
+    return el >= 18;
+}
+
+
+var ages = arrayCalc(years, calculateAge);
+
+var fullAges = arrayCalc(years, isFullAge);
+
+console.log(fullAges.join('\n'));
+
+
+
+
+function print_me(separator) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    return args.join( '\n' );
+  }
+
+ var print = print_me(', ','foo',' bar');
+
+
+ console.log(myStr.replace());
+
+
+
+
+ var person = ['con',29,'developer', 'male',]
+
+ console.log(person[0]);
+
+ person.pop();
+
+
+ var lastName = prompt("last name is?");
+
+ console.log(lastName);
+
+
+
+
+
+ var myName = 'con';
+
+ function sayName(){
+
+    console.log(myName);
+ }
+
+ sayName(
+)
+
+
+var con = {
+
+        name: ['con'],
+        age: 29,
+        job: ' dev',
+
+        sayName: function(){
+            console.log(this.name);
+        },
+
+        addSecond: function(second){
+           this.name.push(second);
+           this.sayName();
+
+
+        }
+
+
+}
+
+con.addSecond('allen');
+
+
+
+function incrementNumber(){
+
+    var currentNumber = 0;
+
+    for(var i = 0;i < 4; i++){
+
+        currentNumber++;
+    }
+}
+
+incrementNumber();
+
+
+
+for(var i = 0; i <=4; i++){
+
+    console.log(i);
+}
+
+
+
+
+
+
+
+
+var years = [1988, 2010, 1992,2016];
+
+
+function printFullAge(years) {
+    var arr = [];
+    var fullAges = [];
+
+
+    for( var i = 0; i < years.length; i++) {
+       arr[i] = 2018 - years[i];
+    }
+
+    for (var i = 0; i < arr.length; i++){
+
+        if ( arr[i] >= 18) {
+            console.log( arr[i] + ' this person is of right age');
+            fullAges.push(true)
+        } else {
+
+            console.log(arr[i] + ' person is underage');
+            fullAges.push(false)
+        }
+
+  }
+  return fullAges;
+}
+
+var full_1 = printFullAge(years);
+var full_2 = printFullAge([1991,2005,2010]);
+
+
+
+// create function printFullAge(years)
+
+// excecute step 2 ,3, 4
+
+// return array if (person < 18) {console.log()}
+
+
+
+var con = {
+
+    name: 'con',
+    yearOfBirth: 1988,
+    job: 'Dev'
+
+};
+
+
+var Person = function(name, yearOfBirth, job){
+
+    this.name = name;
+    this.yearOfBirth = yearOfBirth,
+    this.job = job;
+
+}
+
+
+
+Person.prototype.calculateAge =
+    function(){
+        console.log(2018 - this.yearOfBirth);
+}
+
+var con = new Person('con',1988,'Dev');
+var jane = new Person('jane',1999,"designer");
+
+jane.calculateAge();
+con.calculateAge();
+
+
+
+
+
+
+
+
+
+
+
+
